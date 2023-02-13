@@ -1,0 +1,188 @@
+---
+import { Picture } from "@astrojs/image/components";
+import "@fontsource/inter/variable.css";
+import Header from "~/components/header.astro";
+import Starfield from "~/components/starfield.astro";
+import GitHubCorner from "~/components/github-corner.astro";
+import vision from "~/assets/vision.png";
+import ikaris from "~/assets/ikaris.png"
+import humanTorch from "~/assets/human-torch.png"
+import drfate from "~/assets/drfate.png"
+import "~/styles/index.css";
+
+
+const widths = [450, 800];
+const sizes = "(min-width: 640px) 42vw, 67vw";
+
+export async function getStaticPaths() {
+  const pages = [
+    {
+      slug: "vision",
+      title: "VISION",
+      textBold: "The Vision",
+      text:"is a 'synthezoid', an advanced android, built to replicate the human form using Horton Cells, with the Solar Gem to give him consciousness. He was constructed by Ultron using parts of the original Human Torch which was created by Phineas Horton. He was later modified using brain patterns partially based on those of Wonder Man and then Alex Lipton. He turned on his creator and joined the Avengers, becoming one of its leading members.",
+      image: vision,
+    },
+    {
+      slug: "ikaris",
+      title: "IKARIS",
+      textBold:"Ikaris",
+      text: "is a member of the Eternals, a genetically superior offshoot race of humanity who possess abilities such as levitation and immortality. He is often seen as one of the most prominent Eternals, leading his race of people in many adventures.",
+      image: ikaris,
+    },
+    {
+      slug: "human-torch",
+      title: "HUMAN TORCH",
+      textBold:"Jonathan 'Johnny' Storm a.k.a. the Human Torch",
+      text: "is an American superpowered adventurer. He was a high school student before he was exposed to high levels of cosmic radiation when his older sister Sue Storm's boyfriend, scientist Dr. Reed Richards, took them and pilot Ben Grimm into space in the stolen rocket Marvel-1. The radiation mutated the group, transforming Johnny's entire body into a fiery, plasma-like state.",
+      image: humanTorch,
+    },
+    {
+      slug: "dr-fate",
+      title: "DOCTOR FATE",
+      textBold:"Doctor Fate",
+      text: "is a legacy of heroes in the realm of magic who act as agents of the Lords of Order in the battle against chaos, using the powerful Amulet of Anubis, Cloak of Destiny and Helmet of Fate. Kent Nelson was the original, given his powers by Nabu and residing in the Tower of Fate in Salem.",
+      image: drfate,
+    },
+  ];
+  return pages.map(({ slug, title, textBold, text, image }) => {
+    return {
+      params: { slug },
+      props: { title, textBold, text, image },
+    };
+  });
+}
+
+const { title, textBold, text, image } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <title>{textBold}</title>
+
+    <!-- social media -->
+    <meta property="og:title" content="Astro" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      if (themeSaved) {
+        document.documentElement.dataset.theme = themeSaved;
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches;
+        document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            document.documentElement.dataset.theme = event.matches
+              ? "dark"
+              : "light";
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header />
+    <section class="relative h-full">
+      <Starfield />
+      <GitHubCorner />
+      <div class="relative grid h-full place-items-center sm:grid-cols-2">
+        <div class='absolute font-clash w-screen h-screen 
+        flex justify-center items-center bg-'>
+          <div class="flex flex-col lg:grid lg:grid-cols-10">
+            {/* Left */}
+            <div class="lg:col-span-4">
+                <div class='flex flex-col items-center justify-center lg:min-h-full'>
+                      <div
+                        id="astronaut"
+                        class="max-w-3xl sm:self-auto sm:justify-self-start"
+                      >
+                        <Picture
+                          class="object-cover w-64 lg:w-72"
+                          src={image}
+                          widths={widths}
+                          sizes={sizes}
+                          loading="eager"
+                          alt="A floating astronaut in a space suit"
+                        />
+                      </div>
+                    <div class='text-center'>
+                        <h1 class='text-4xl font-bold font-clash'>{title}</h1>
+                    </div>
+                </div>
+            </div>
+    
+            {/* Right */}
+            <div class='flex flex-1 flex-col lg:col-span-6'>
+              <div 
+                class="flex flex-col items-center 
+                 text-center lg:justify-center"
+              >
+                <p class="p-7">
+                    <span class="font-bold">
+                      {textBold}
+                    </span>{" "} 
+                     {text}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+    
+    <noscript>
+      <style>
+        #splash-bg-fallback {
+          display: block;
+        }
+      </style>
+    </noscript>
+    
+    <style>
+      @keyframes float {
+        0% {
+          transform: translate3d(0, 0, 0);
+        }
+    
+        100% {
+          transform: translate3d(0, 30px, 0);
+        }
+      }
+    
+      #astronaut {
+        animation: float linear 2.5s infinite alternate;
+      }
+    
+      @media (prefers-reduced-motion: reduce) {
+        #astronaut {
+          @apply animate-none;
+        }
+    
+        :global(#starfield) {
+          @apply hidden;
+        }
+    
+        #splash-bg-fallback {
+          @apply block;
+        }
+      }
+    </style>
+  </body>
+</html>
