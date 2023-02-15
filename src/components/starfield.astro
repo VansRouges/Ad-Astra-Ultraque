@@ -72,10 +72,10 @@
 
     const { clientWidth: width, clientHeight: height } = container;
     const dpr = window.devicePixelRatio || 1;
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = `${window.innerWidth}px`;
+    canvas.style.height = `${window.innerHeight}px`;
     ctx.scale(dpr, dpr);
 
     for (const star of stars) {
@@ -84,7 +84,7 @@
       star.z = 0;
     }
 
-    ctx.translate(width / 2, height / 2);
+    ctx.translate(window.innerWidth / 2, window.innerHeight / 2);
     ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
     ctx.strokeStyle = "white";
     rafId = requestAnimationFrame(frame);

@@ -1,64 +1,144 @@
 ---
 import { Picture } from "@astrojs/image/components";
 import vision from "~/assets/vision.png";
+import drFate from "~/assets/drfate.png"
+import humanTorch from "~/assets/human-torch.png"
+import ikaris from "~/assets/ikaris.png"
 import Starfield from "~/components/starfield.astro";
 import GitHubCorner from "./github-corner.astro";
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
+
+export function getStaticPaths () {
+ return [
+    {params: {
+              title: 'VISION',
+              image: vision,
+              description:'',
+            }
+    },
+    {params: {
+              title: 'DOCTOR FATE',
+              image: drFate,
+              description:'',
+            }
+    },
+    {params: {
+              title: 'HUMAN TORCH',
+              image: humanTorch,
+              description:'',
+            }
+    },
+    {params: {
+              title: 'IKARIS',
+              image: ikaris,
+              description:'',
+            }
+    },
+  ];
+}
+
+const { lang, version } = Astro.params;
 ---
 
 <section class="relative h-full">
   <Starfield />
   <GitHubCorner />
-  <div class="relative grid h-full place-items-center sm:grid-cols-2">
-    <div class='absolute font-clash w-screen h-screen 
-    flex justify-center items-center bg-'>
-      <div class="flex flex-col lg:grid lg:grid-cols-10">
-        {/* Left */}
-        <div class="lg:col-span-4">
-            <div class='flex flex-col items-center justify-center lg:min-h-full'>
-                  <div
-                    id="astronaut"
-                    class="max-w-3xl sm:self-auto sm:justify-self-start"
-                  >
-                    <Picture
-                      class="object-cover w-64 lg:h-96 lg:w-72"
-                      src={vision}
-                      widths={widths}
-                      sizes={sizes}
-                      loading="eager"
-                      alt="A floating astronaut in a space suit"
-                    />
-                  </div>
-                <div class='text-center'>
-                    <h1 class='text-4xl font-bold font-clash'>VISION</h1>
-                </div>
-            </div>
-        </div>
+  <div class="relative grid h-full place-items-center font-clash">
+    <main class='bg-black p-5 shadow-xl shadow-rose-400/20'>
+      <div class='grid sm:space-x-3 sm:grid-cols-4 lg:grid-cols-4
+      2xl:grid-cols-4'>
+          <a href={`/hero/vision`}>
+            <div class='flex cursor-pointer flex-col
+            items-center transition-all duration-200 hover:scale-105'>
+              <Picture
+                class='w-14 sm:w-28 md:w-64 object-cover'
+                widths={widths}
+                sizes={sizes}
+                src={vision}
+                loading="eager"
+                alt=""
+              />
 
-        {/* Right */}
-        <div class='flex flex-1 flex-col lg:col-span-6'>
-          <div 
-            class="flex flex-col items-center 
-             text-center lg:justify-center"
-          >
-            <p class="p-7">
-                <span class="font-bold">
-                  The Vision
-                </span>{" "} 
-                 is a "synthezoid", an advanced android, built to replicate the human form using Horton Cells, with the Solar Gem to give him consciousness.
-                He was constructed by Ultron using parts of the original Human Torch which was created by Phineas Horton. 
-                He was later modified using brain patterns partially based on those of Wonder Man and then Alex Lipton. 
-                He turned on his creator and joined the Avengers, becoming one of its leading members.
-            </p>
-            <a href="/hero/">Click me</a>
-          </div>
-        </div>
+
+              <div class='p-2 lg:p-5 text-center'>
+                <h2 class='text-lg lg:text-3xl'>VISION</h2>
+                <p class='mt-0 sm:mt-2 text-xs text-gray-100/20'>
+                  AVENGERS
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href={`/hero/dr-fate`}>
+            <div class='flex cursor-pointer flex-col
+            items-center transition-all duration-200 hover:scale-105'>
+              <Picture
+                class='w-14 sm:w-20 md:w-48 object-cover'
+                widths={widths}
+                sizes={sizes}
+                src={drFate}
+                loading="eager"
+                alt=""
+              />
+
+
+              <div class='p-2 lg:p-5 text-center'>
+                <h2 class='text-xl lg:text-3xl'>DOCTOR FATE</h2>
+                <p class='mt-2 text-xs text-gray-100/20'>
+                  JUSTICE SOCIETY
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href={`/hero/human-torch`}>
+            <div class='flex cursor-pointer flex-col
+            items-center transition-all duration-200 hover:scale-105'>
+              <Picture
+                class='w-14 sm:w-20 md:w-48 object-cover'
+                widths={widths}
+                sizes={sizes}
+                src={humanTorch}
+                loading="eager"
+                alt=""
+              />
+
+
+              <div class='p-2 lg:p-5 text-center'>
+                <h2 class='text-xl lg:text-3xl'>HUMAN TORCH</h2>
+                <p class='mt-2 text-xs text-gray-100/20'>
+                  FANTASTIC FOUR
+                </p>
+              </div>
+            </div>
+          </a>
+          <a href={`/hero/ikaris`}>
+            <div class='flex cursor-pointer flex-col
+            items-center transition-all duration-200 hover:scale-105'>
+              <Picture
+                class='w-12 sm:w-24 md:w-52 object-cover'
+                widths={widths}
+                sizes={sizes}
+                src={ikaris}
+                loading="eager"
+                alt=""
+              />
+
+
+              <div class='p-2 lg:p-5'>
+                <h2 class='text-xl lg:text-3xl'>IKARIS</h2>
+                <p class='mt-2 text-xs text-gray-100/20 text-center'>
+                  ETERNAL
+                </p>
+              </div>
+            </div>
+          </a>
       </div>
-    </div>
-    
+    </main>
   </div>
+  
+
+  
 </section>
 
 <noscript>
