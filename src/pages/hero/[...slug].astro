@@ -34,7 +34,7 @@ export async function getStaticPaths() {
       slug: "human-torch",
       title: "HUMAN TORCH",
       textBold:"Jonathan 'Johnny' Storm a.k.a. the Human Torch",
-      text: "is an American superpowered adventurer. He was a high school student before he was exposed to high levels of cosmic radiation when his older sister Sue Storm's boyfriend, scientist Dr. Reed Richards, took them and pilot Ben Grimm into space in the stolen rocket Marvel-1. The radiation mutated the group, transforming Johnny's entire body into a fiery, plasma-like state.",
+      text: "is an American superpowered adventurer. He was a high school student before he was exposed to high levels of cosmic radiation when Dr. Reed Richards, into space in the stolen rocket Marvel-1. The radiation mutated the group, transforming Johnny's entire body into a fiery, plasma-like state.",
       image: humanTorch,
     },
     {
@@ -103,7 +103,7 @@ const { title, textBold, text, image } = Astro.props;
       <GitHubCorner />
       <div class="relative grid h-full place-items-center sm:grid-cols-2">
         <div class='absolute font-clash w-screen h-screen 
-        flex justify-center items-center bg-'>
+        flex justify-center items-center'>
           <div class="flex flex-col lg:grid lg:grid-cols-10">
             {/* Left */}
             <div class="lg:col-span-4">
@@ -113,7 +113,7 @@ const { title, textBold, text, image } = Astro.props;
                         class="max-w-3xl sm:self-auto sm:justify-self-start"
                       >
                         <Picture
-                          class="object-cover w-64 lg:w-72"
+                          class="object-cover w-60 lg:w-72"
                           src={image}
                           widths={widths}
                           sizes={sizes}
@@ -128,12 +128,12 @@ const { title, textBold, text, image } = Astro.props;
             </div>
     
             {/* Right */}
-            <div class='flex flex-1 flex-col lg:col-span-6'>
+            <div class='flex flex-col lg:col-span-6'>
               <div 
                 class="flex flex-col items-center 
                  text-center lg:justify-center"
               >
-                <p class="p-7">
+                <p class="p-7 text-xs md:text-base">
                     <span class="font-bold">
                       {textBold}
                     </span>{" "} 

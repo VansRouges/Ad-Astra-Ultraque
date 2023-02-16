@@ -46,12 +46,13 @@ const { lang, version } = Astro.params;
   <Starfield />
   <GitHubCorner />
   <div class="relative grid h-full place-items-center font-clash">
-    <main class='bg-black p-5 shadow-xl shadow-rose-400/20'>
+    <main class='bg-white p-2 shadow-xl rounded-lg bg-opacity-80 bg-clip-padding' style="backdrop-filter: blur(20px);">
       <div class='grid sm:space-x-3 sm:grid-cols-4 lg:grid-cols-4
       2xl:grid-cols-4'>
-          <a href={`/hero/vision`}>
+          <a class="button" href={`/hero/vision`}>
             <div class='flex cursor-pointer flex-col
             items-center transition-all duration-200 hover:scale-105'>
+            <div id="astronaut">
               <Picture
                 class='w-14 sm:w-28 md:w-64 object-cover'
                 widths={widths}
@@ -60,11 +61,13 @@ const { lang, version } = Astro.params;
                 loading="eager"
                 alt=""
               />
+            </div>
+              
 
 
               <div class='p-2 lg:p-5 text-center'>
-                <h2 class='text-lg lg:text-3xl'>VISION</h2>
-                <p class='mt-0 sm:mt-2 text-xs text-gray-100/20'>
+                <h2 class='text-lg lg:text-3xl text-black'>VISION</h2>
+                <p class='sm:mt-2 text-xs text-gray-700/20'>
                   AVENGERS
                 </p>
               </div>
@@ -73,7 +76,8 @@ const { lang, version } = Astro.params;
           <a href={`/hero/dr-fate`}>
             <div class='flex cursor-pointer flex-col
             items-center transition-all duration-200 hover:scale-105'>
-              <Picture
+            <div id="astronaut">
+               <Picture
                 class='w-14 sm:w-20 md:w-48 object-cover'
                 widths={widths}
                 sizes={sizes}
@@ -81,11 +85,13 @@ const { lang, version } = Astro.params;
                 loading="eager"
                 alt=""
               />
+            </div>
+             
 
 
               <div class='p-2 lg:p-5 text-center'>
-                <h2 class='text-xl lg:text-3xl'>DOCTOR FATE</h2>
-                <p class='mt-2 text-xs text-gray-100/20'>
+                <h2 class='text-xl lg:text-3xl text-black'>DOCTOR FATE</h2>
+                <p class='text-xs text-gray-700/20'>
                   JUSTICE SOCIETY
                 </p>
               </div>
@@ -94,6 +100,7 @@ const { lang, version } = Astro.params;
           <a href={`/hero/human-torch`}>
             <div class='flex cursor-pointer flex-col
             items-center transition-all duration-200 hover:scale-105'>
+            <div id="astronaut">
               <Picture
                 class='w-14 sm:w-20 md:w-48 object-cover'
                 widths={widths}
@@ -102,11 +109,13 @@ const { lang, version } = Astro.params;
                 loading="eager"
                 alt=""
               />
+            </div>
+              
 
 
               <div class='p-2 lg:p-5 text-center'>
-                <h2 class='text-xl lg:text-3xl'>HUMAN TORCH</h2>
-                <p class='mt-2 text-xs text-gray-100/20'>
+                <h2 class='text-xl lg:text-3xl text-black'>HUMAN TORCH</h2>
+                <p class='text-xs text-gray-700/20'>
                   FANTASTIC FOUR
                 </p>
               </div>
@@ -115,19 +124,22 @@ const { lang, version } = Astro.params;
           <a href={`/hero/ikaris`}>
             <div class='flex cursor-pointer flex-col
             items-center transition-all duration-200 hover:scale-105'>
+            <div id="astronaut">
               <Picture
-                class='w-12 sm:w-24 md:w-52 object-cover'
+                class='w-14 sm:w-24 md:w-52 object-cover'
                 widths={widths}
                 sizes={sizes}
                 src={ikaris}
                 loading="eager"
                 alt=""
               />
+            </div>
+              
 
 
               <div class='p-2 lg:p-5'>
-                <h2 class='text-xl lg:text-3xl'>IKARIS</h2>
-                <p class='mt-2 text-xs text-gray-100/20 text-center'>
+                <h2 class='text-xl lg:text-3xl text-black'>IKARIS</h2>
+                <p class='text-xs text-gray-700/20 text-center'>
                   ETERNAL
                 </p>
               </div>
@@ -150,6 +162,9 @@ const { lang, version } = Astro.params;
 </noscript>
 
 <style>
+  button:focus{
+    outline: none;
+  }
   @keyframes float {
     0% {
       transform: translate3d(0, 0, 0);
@@ -163,14 +178,20 @@ const { lang, version } = Astro.params;
   #astronaut {
     animation: float linear 2.5s infinite alternate;
   }
+  #astronaut-1{
+    animation: float linear 2.2s infinite alternate;
+  }
 
   @media (prefers-reduced-motion: reduce) {
     #astronaut {
       @apply animate-none;
     }
+    #astronaut-1{
+      @apply animate-none;
+    }
 
     :global(#starfield) {
-      @apply hidden;
+      @apply block;
     }
 
     #splash-bg-fallback {
@@ -178,3 +199,11 @@ const { lang, version } = Astro.params;
     }
   }
 </style>
+<script>
+  const buttons = document.querySelectorAll('button');
+  buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    button.blur();
+  });
+});
+</script>
