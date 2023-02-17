@@ -4,23 +4,18 @@ import "@fontsource/inter/variable.css";
 import Header from "~/components/header.astro";
 import Starfield from "~/components/starfield.astro";
 import GitHubCorner from "~/components/github-corner.astro";
-
-
-import "~/styles/index.css";
-
+import ikaris from "~/assets/ikaris.png"
 
 const widths = [450, 800];
 const sizes = "(min-width: 640px) 42vw, 67vw";
 ---
-
-<!DOCTYPE html>
 <html lang="en" class="h-full motion-safe:scroll-smooth" data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
-    <title>{textBold}</title>
+    <title>Ikaris</title>
 
     <!-- social media -->
     <meta property="og:title" content="Astro" />
@@ -70,16 +65,17 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
                         class="max-w-3xl sm:self-auto sm:justify-self-start"
                       >
                         <Picture
-                          class="object-cover w-60 lg:w-72"
-                          src={image}
-                          widths={widths}
-                          sizes={sizes}
-                          loading="eager"
-                          alt="A floating astronaut in a space suit"
+                            id="play_vision"
+                            class="object-cover w-60 lg:w-72"
+                            src={ikaris}
+                            widths={widths}
+                            sizes={sizes}
+                            loading="eager"
+                            alt="A floating astronaut in a space suit"
                         />
                       </div>
                     <div class='text-center'>
-                        <h1 class='text-4xl font-bold font-clash'>{title}</h1>
+                        <h1 class='text-4xl font-bold font-clash'>IKARIS</h1>
                     </div>
                 </div>
             </div>
@@ -92,9 +88,10 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
               >
                 <p class="p-7 text-xs md:text-base">
                     <span class="font-bold">
-                      {textBold}
+                        Ikaris
                     </span>{" "} 
-                     {text}
+                    is a member of the Eternals, a genetically superior offshoot race of humanity who possess abilities such as levitation and immortality. 
+                    He is often seen as one of the most prominent Eternals, leading his race of people in many adventures.
                 </p>
               </div>
             </div>
@@ -104,6 +101,17 @@ const sizes = "(min-width: 640px) 42vw, 67vw";
       </div>
     </section>
     
+    <script>
+        const audio = new Audio("https://gateway.pinata.cloud/ipfs/Qmbhgzj7pPbg2vkprB4iuyoVzYXm3ML16AEKCuA8Z37KF1");
+        const button = document.getElementById("play_vision")!;
+      
+        // button.forEach(button => {
+          button.addEventListener("mouseover", () => {
+            audio.play();
+          });
+        // });
+      </script>
+
     <noscript>
       <style>
         #splash-bg-fallback {

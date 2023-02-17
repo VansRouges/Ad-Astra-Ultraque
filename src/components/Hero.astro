@@ -49,7 +49,7 @@ const { lang, version } = Astro.params;
     <main class='bg-white p-2 shadow-xl rounded-lg bg-opacity-80 bg-clip-padding' style="backdrop-filter: blur(20px);">
       <div class='grid sm:space-x-3 sm:grid-cols-4 lg:grid-cols-4
       2xl:grid-cols-4'>
-          <a class="button" href={`/hero/vision`}>
+          <a href={`/hero/vision`}>
             <div class='flex cursor-pointer flex-col
             items-center transition-all duration-200 hover:scale-105'>
             <div id="astronaut">
@@ -146,6 +146,7 @@ const { lang, version } = Astro.params;
             </div>
           </a>
       </div>
+      <!-- <button class="absolute top-1 gradient-text">Ffffffff</button> -->
     </main>
   </div>
   
@@ -200,10 +201,12 @@ const { lang, version } = Astro.params;
   }
 </style>
 <script>
-  const buttons = document.querySelectorAll('button');
-  buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    button.blur();
-  });
-});
+  const audio = new Audio("https://www.behindthevoiceactors.com/_audio/voice_compare/10160.mp3");
+  const button = document.getElementById("play_vision")!;
+
+  // button.forEach(button => {
+    button.addEventListener("mouseover", () => {
+      audio.play();
+    });
+  // });
 </script>
